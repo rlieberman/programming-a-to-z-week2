@@ -4,6 +4,8 @@ var slider;
 var bttnSubmit;
 var bttnClear;
 
+var word; //word you're getting from the user and sending to the API
+
 
 function setup() {
 
@@ -39,12 +41,12 @@ function getWordExamples() { //this function makes an API request to wordnik and
   createP('this is your word: ' + input.value());
   createP('you will retrieve ' + slider.value() + ' examples from the wordnik API');
 
-  var word = input.value();
+  word = input.value();
   var limit_num = slider.value(); //set the limit number using the slider
   var my_key = '8f1c6a85da698016e700d0eeb57066aeff88d029d09498010';
 
   //***
-  //***
+  //***NEXT STEP:
   //***USE A REGULAR EXPRESSION TO DO A CHECK AND MAKE SURE PPL ONLY TYPE IN ONE WORD
 
   var url = 'http://api.wordnik.com/v4/word.json/' + word + '/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=' + limit_num + '&api_key=' + my_key;
@@ -57,12 +59,27 @@ function getWordExamples() { //this function makes an API request to wordnik and
 
 
 function gotData(data) {
-  // console.log("GOT DATA");
-  console.log(data);
+  // console.log(data);
 
   for (var i=0; i<data.examples.length; i++) {
        // div = createDiv(data.examples[i].text); //makes a div vs prints to the console (below)
-       console.log(data.examples[i].text); //gets you to example sentence i'm looking for
+       var exampleUsage = data.examples[i].text; //gets you to example sentence i'm looking for
+       // console.log(exampleUsage);
+
+       var sentenceArray = exampleUsage.split(' '); //split each sentence into an array of words
+       // console.log(sentenceArray); //print the whole array -- aka the sentence as an array of indiv. words
+       
+       var loc = sentenceArray.indexOf(word); //find where that word occurs in the sentence, store it in loc
+       if (loc == -1) { //if loc is -1, it means it can't find the word because of punctuation so just ignore these for now -- then we'll fix with regex
+          console.log(" ");
+       } 
+       else {
+          slicedSentence = sentenceArray.slice(loc);  //slice the list starting at loc and go til the end
+          console.log(slicedSentence.join(' '));
+       }
+      
   }
- 
 }
+
+
+//

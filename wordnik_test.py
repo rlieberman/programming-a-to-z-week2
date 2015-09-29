@@ -15,8 +15,8 @@ limit_num = 25;
 url = "http://api.wordnik.com:80/v4/word.json/" + word + "/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=" + str(limit_num) + "&api_key=" + api_key
 print url
 
-# response_str = urllib.urlopen(url).read()   #we get back a response as a string from the API
-# response_dict = json.loads(response_str)    #use json library to convert that from a string --> python dict
+response_str = urllib.urlopen(url).read()   #we get back a response as a string from the API
+response_dict = json.loads(response_str)    #use json library to convert that from a string --> python dict
 
 
 # # #PRINT OUT THE RAW DICTIONARY
@@ -28,10 +28,10 @@ print url
 # #   print each_example
 
 
-# for item in response_dict['examples']:    #print the examples
-#   each_example = item['text'].split()   #convert each example into a list so we can slice it
-#   if word in each_example:
-#     loc = each_example.index(word)      #find where the word occurs in the list
-#     print " ".join(each_example[loc:loc+10])
+for item in response_dict['examples']:    #print the examples
+  each_example = item['text'].split()   #convert each example into a list so we can slice it
+  if word in each_example:
+    loc = each_example.index(word)      #find where the word occurs in the list
+    print " ".join(each_example[loc:loc+10])
 
 

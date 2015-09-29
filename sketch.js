@@ -21,7 +21,7 @@ function setup() {
   input.style('padding', '10px');
   input.style('width', '500px');
   input.style('font-size', '36px');
-  // input.mousePressed(input.style('background', '#e6e6e6'));
+  input.mousePressed(function() {input.style('background', '#e6e6e6')});
 
 
   //create a slider to show the limit number of words you're getting from the API
@@ -30,6 +30,7 @@ function setup() {
   //create a button to submit what's in the field
   bttnSubmit = createButton('submit');
   bttnSubmit.mousePressed(getWordExamples); 
+  bttnSubmit.mousePressed(function() {input.style('background', 'none')});
 
   bttnClear = createButton('clear');
   //***ADD CALLBACK SO THAT IT CLEARS THE PAGE

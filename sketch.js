@@ -77,7 +77,7 @@ function gotData(data) {
        } 
        else {
           slicedSentence = sentenceArray.slice(loc);  //slice the list starting at loc and go til the end
-          createP(slicedSentence);
+          createP(slicedSentence.join(' '));
           console.log(slicedSentence.join(' '));
        }
       

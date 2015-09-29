@@ -3,18 +3,6 @@ var input;
 var slider;
 var button;
 
-var droneText;
-
-// var config = {
-//     api_key: '8f1c6a85da698016e700d0eeb57066aeff88d029d09498010',
-//     limit: 10,
-//     sourceDictionaries: 'ahd,wiktionary'
-// };
-
-// function preload() {
-//   droneText = loadStrings('libraries/drone.txt'); //not working, totally broke my
-// }
-
 
 function setup() {
 
@@ -62,16 +50,5 @@ function getWordExamples() { //THIS WILL EVENTUALLY BE WHERE THE MAGIC HAPPENS
 
   loadJSON(url, gotData);
 
-  // createP(droneText)
-
-// //NOT WORKING!
-//   $.ajax({
-//     type: 'GET',
-//     url: '//api.wordnik.com/v4/word.json/' + input.value() + '/definitions',
-//     dataType: 'json',
-//     data: config,
-//     success: function(data) {console.log(data);},
-//     error: function(response) {console.log(response);}
-// });
 
 }

@@ -70,11 +70,13 @@ function gotData(data) {
        // console.log(sentenceArray); //print the whole array -- aka the sentence as an array of indiv. words
        
        var loc = sentenceArray.indexOf(word); //find where that word occurs in the sentence, store it in loc
-       if (loc == -1) { //if loc is -1, it means it can't find the word because of punctuation so just ignore these for now -- then we'll fix with regex
-          console.log(" ");
+       if (loc == -1) { //if loc is -1, it means it can't find the word because of punctuation so just ignore these for now -- then we'll fix with regex later on
+          createP(" ");
+          // console.log(" ");
        } 
        else {
           slicedSentence = sentenceArray.slice(loc);  //slice the list starting at loc and go til the end
+          createP(slicedSentence);
           console.log(slicedSentence.join(' '));
        }
       

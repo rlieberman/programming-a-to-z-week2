@@ -26,29 +26,30 @@ function setup() {
 
   //create a button to submit what's in the field
   button = createButton('submit');
-  button.mousePressed(getWordExamples); //***WHEN YOU CLICK, CALL THE SUBMIT WORD FUNCTION, TO TALK TO API
+  button.mousePressed(getWordExamples); 
   
 } 
 
 
-function gotData(data) {
-  console.log("GOT DATA");
-  console.log(data);
-
-  console.log(data.examples[0].text);
-}
-
-function getWordExamples() { //THIS WILL EVENTUALLY BE WHERE THE MAGIC HAPPENS
+function getWordExamples() { //this function makes an API request to wordnik and gets back raw json
   createP('this is your word: ' + input.value());
   createP('you will retrieve ' + slider.value() + ' examples from the wordnik API');
 
   var word = input.value();
-  var key = '8f1c6a85da698016e700d0eeb57066aeff88d029d09498010';
+  var my_key = '8f1c6a85da698016e700d0eeb57066aeff88d029d09498010';
   
-  var url = 'http://api.wordnik.com/v4/word.json/apple/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=25&api_key='+key
-  console.log(url);
+  var url = 'http://api.wordnik.com/v4/word.json/' + word + '/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=30&api_key=' + my_key;
+  console.log(url); //print URL to make sure it's working
 
-  loadJSON(url, gotData);
+  //loadJSON takes 2 arguments, a URL and then a callback (function to be completed after loadJSON finishes)
+  loadJSON(url, gotData); 
+
+}
 
 
+function gotData(data) {
+  // console.log("GOT DATA");
+  console.log(data);
+
+  console.log(data.examples[0].text);
 }

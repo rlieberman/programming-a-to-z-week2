@@ -11,12 +11,15 @@ var droneText;
 //     sourceDictionaries: 'ahd,wiktionary'
 // };
 
+// function preload() {
+//   droneText = loadStrings('libraries/drone.txt'); //not working, totally broke my
+// }
+
 
 function setup() {
 
   noCanvas();
 
-  droneText = loadStrings('libraries/drone.txt'); //not working, totally broke my code
 
   //create paragraph to show the prompt for entering text
   prompt = createElement('h1', "Enter a word to create a dictionary poem");
@@ -40,12 +43,26 @@ function setup() {
 } 
 
 
+function gotData(data) {
+  console.log("GOT DATA");
+  console.log(data);
+
+  console.log(data.examples[0].text);
+}
 
 function getWordExamples() { //THIS WILL EVENTUALLY BE WHERE THE MAGIC HAPPENS
   createP('this is your word: ' + input.value());
   createP('you will retrieve ' + slider.value() + ' examples from the wordnik API');
 
-  createP(droneText)
+  var word = input.value();
+  var key = '8f1c6a85da698016e700d0eeb57066aeff88d029d09498010';
+  
+  var url = 'http://api.wordnik.com/v4/word.json/apple/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=25&api_key='+key
+  console.log(url);
+
+  loadJSON(url, gotData);
+
+  // createP(droneText)
 
 // //NOT WORKING!
 //   $.ajax({

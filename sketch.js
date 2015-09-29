@@ -38,8 +38,8 @@ function setup() {
 
 
 function getWordExamples() { //this function makes an API request to wordnik and gets back raw json
-  createP('this is your word: ' + input.value());
-  createP('you will retrieve ' + slider.value() + ' examples from the wordnik API');
+  // createP('this is your word: ' + input.value());
+  // createP('you will retrieve ' + slider.value() + ' examples from the wordnik API');
 
   word = input.value();
   var limit_num = slider.value(); //set the limit number using the slider

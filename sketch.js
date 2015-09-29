@@ -1,7 +1,8 @@
 var prompt;
 var input;
 var slider;
-var button;
+var bttnSubmit;
+var bttnClear;
 
 
 function setup() {
@@ -22,11 +23,14 @@ function setup() {
 
 
   //create a slider to show the limit number of words you're getting from the API
-  slider = createSlider(1,25, 12);
+  slider = createSlider(1,30, 15);
 
   //create a button to submit what's in the field
-  button = createButton('submit');
-  button.mousePressed(getWordExamples); 
+  bttnSubmit = createButton('submit');
+  bttnSubmit.mousePressed(getWordExamples); 
+
+  bttnClear = createButton('clear');
+  //***ADD CALLBACK SO THAT IT CLEARS THE PAGE
   
 } 
 
@@ -36,9 +40,14 @@ function getWordExamples() { //this function makes an API request to wordnik and
   createP('you will retrieve ' + slider.value() + ' examples from the wordnik API');
 
   var word = input.value();
+  var limit_num = slider.value(); //set the limit number using the slider
   var my_key = '8f1c6a85da698016e700d0eeb57066aeff88d029d09498010';
-  
-  var url = 'http://api.wordnik.com/v4/word.json/' + word + '/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=30&api_key=' + my_key;
+
+  //***
+  //***
+  //***USE A REGULAR EXPRESSION TO DO A CHECK AND MAKE SURE PPL ONLY TYPE IN ONE WORD
+
+  var url = 'http://api.wordnik.com/v4/word.json/' + word + '/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=' + limit_num + '&api_key=' + my_key;
   console.log(url); //print URL to make sure it's working
 
   //loadJSON takes 2 arguments, a URL and then a callback (function to be completed after loadJSON finishes)
@@ -51,5 +60,9 @@ function gotData(data) {
   // console.log("GOT DATA");
   console.log(data);
 
-  console.log(data.examples[0].text);
+  for (var i=0; i<data.examples.length; i++) {
+       // div = createDiv(data.examples[i].text); //makes a div vs prints to the console (below)
+       console.log(data.examples[i].text); //gets you to example sentence i'm looking for
+  }
+ 
 }

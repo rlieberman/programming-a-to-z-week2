@@ -6,6 +6,7 @@ var bttnClear;
 
 var word; //word you're getting from the user and sending to the API
 
+var sentences = []; //array to hold all the sentences
 
 function setup() {
 
@@ -33,7 +34,10 @@ function setup() {
   bttnSubmit.mousePressed(function() {input.style('background', 'none')});
 
   bttnClear = createButton('clear');
-  //***ADD CALLBACK SO THAT IT CLEARS THE PAGE
+  bttnClear.mousePressed(function(){
+    for (var i=0; i<sentences.length; i++)
+      sentences[i].remove();
+  })
   
 } 
 
@@ -60,7 +64,8 @@ function getWordExamples() { //this function makes an API request to wordnik and
 
 
 function gotData(data) {
-  // console.log(data);
+
+  var p;
 
   for (var i=0; i<data.examples.length; i++) {
        // div = createDiv(data.examples[i].text); //makes a div vs prints to the console (below)
@@ -72,16 +77,18 @@ function gotData(data) {
        
        var loc = sentenceArray.indexOf(word); //find where that word occurs in the sentence, store it in loc
        if (loc == -1) { //if loc is -1, it means it can't find the word because of punctuation so just ignore these for now -- then we'll fix with regex later on
-          createP(" ");
-          // console.log(" ");
+          p = createP(" ");
+    
        } 
        else {
           slicedSentence = sentenceArray.slice(loc);  //slice the list starting at loc and go til the end
-          createP(slicedSentence.join(' '));
+          p = createP(slicedSentence.join(' '));
           console.log(slicedSentence.join(' '));
        }
-      
+
+       sentences.push(p);
   }
+   console.log(sentences);
 }
 
 

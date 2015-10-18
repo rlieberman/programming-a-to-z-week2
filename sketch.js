@@ -34,13 +34,15 @@ function setup() {
   bttnSubmit.mousePressed(function() {input.style('background', 'none')});
 
   bttnClear = createButton('clear');
-  bttnClear.mousePressed(function(){  //clear the sentences
-    for (var i=0; i<sentences.length; i++)
-      sentences[i].remove();
-  })
-  
+  bttnClear.mousePressed(clearStuff); //clear the sentences
+
 } 
 
+function clearStuff() {
+  for (var i=0; i<sentences.length; i++) {}
+      sentences[i].remove();
+  }
+}
 
 function getWordExamples() { //this function makes an API request to wordnik and gets back raw json
   // createP('this is your word: ' + input.value());

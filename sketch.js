@@ -22,7 +22,7 @@ function setup() {
   input.style('padding', '10px');
   input.style('width', '500px');
   input.style('font-size', '36px');
-  input.mousePressed(function() {input.style('background', '#e6e6e6')});
+  input.mousePressed(function() {input.style('background', '#e6e6e6')}); //make the box grey when you click in it 
 
 
   //create a slider to show the limit number of words you're getting from the API
@@ -30,11 +30,11 @@ function setup() {
 
   //create a button to submit what's in the field
   bttnSubmit = createButton('submit');
-  bttnSubmit.mousePressed(getWordExamples); 
+  bttnSubmit.mousePressed(getWordExamples);  //when button is clicked, run function getWordEamples
   bttnSubmit.mousePressed(function() {input.style('background', 'none')});
 
   bttnClear = createButton('clear');
-  bttnClear.mousePressed(function(){
+  bttnClear.mousePressed(function(){  //clear the sentences
     for (var i=0; i<sentences.length; i++)
       sentences[i].remove();
   })

@@ -39,10 +39,9 @@ function setup() {
 } 
 
 function clearStuff() {
-  for (var i=0; i<sentences.length; i++) {}
+  for (var i=0; i<sentences.length; i++) {
       sentences[i].remove();
   }
-
   input.value([' ']);
 }
 

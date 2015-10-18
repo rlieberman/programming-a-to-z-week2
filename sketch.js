@@ -34,7 +34,7 @@ function setup() {
   bttnSubmit.mousePressed(function() {input.style('background', 'none')});
 
   bttnClear = createButton('clear');
-  bttnClear.mousePressed(clearStuff); //clear the sentences
+  bttnClear.mousePressed(clearStuff); //clear the sentences -- **need to figure out how to clear the field
 
 } 
 
@@ -42,6 +42,8 @@ function clearStuff() {
   for (var i=0; i<sentences.length; i++) {
       sentences[i].remove();
   }
+
+  input.value('');
 }
 
 function getWordExamples() { //this function makes an API request to wordnik and gets back raw json

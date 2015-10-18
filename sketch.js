@@ -42,7 +42,6 @@ function clearStuff() {
   for (var i=0; i<sentences.length; i++) {
       sentences[i].remove();
   }
-  input.value([' ']);
 }
 
 function getWordExamples() { //this function makes an API request to wordnik and gets back raw json
